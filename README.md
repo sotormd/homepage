@@ -71,8 +71,6 @@ home.lib.makeHomepage {
       { short = "yt"; full = "youtube"; url = "https://youtube.com"; }
       { short = "gh"; full = "github"; url = "https://github.com"; }
     ]
-
-    "separator"
   ];
 
   n = 2;                    # grid size (columns per row)
