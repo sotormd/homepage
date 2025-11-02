@@ -89,8 +89,11 @@ schema).
   description = "Custom themed homepage";
 
   inputs = {
-    home.url = "github:sotormd/home";
-    colors.url = "path:/home/vrm/Projects/my-colors"; # your own color flake
+    colors.url = "github:myUsername/colors"; # your own color flake
+    home = {
+      url = "github:sotormd/homepage";
+      inputs.colors.follows = "colors";
+    };
   };
 
   outputs = { self, home, colors, ... }: {
