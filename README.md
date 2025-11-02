@@ -61,8 +61,8 @@ It takes a **layout list**, where each element is either:
 home.lib.makeHomepage {
   layout = [
     [
-      { short = "sx"; full = "searxng"; url = "https://rose-server.duckdns.org/searxng/"; }
-      { short = "vw"; full = "vaultwarden"; url = "https://rose-server.duckdns.org/vaultwarden/"; }
+      { short = "re"; full = "reddit"; url = "https://reddit.com"; }
+      { short = "dc"; full = "discord"; url = "https://discord.com/app"; }
     ]
 
     "separator"
@@ -75,7 +75,7 @@ home.lib.makeHomepage {
     "separator"
   ];
 
-  n = 5;                    # grid size (columns per row)
+  n = 2;                    # grid size (columns per row)
   font = "'IBM Plex Sans'"; # custom font family
 }
 ```
