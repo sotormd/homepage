@@ -1,20 +1,20 @@
 {
-  description = "simple static homepage";
+  description = "simple static homepage generator";
 
   inputs.colors.url = "github:sotormd/colors";
 
   outputs =
     { colors, ... }:
-    {
-      lib.makeHomepage =
+    let
+      c = colors.lib.colors;
+
+      makeHomepage =
         {
           layout,
           n ? 5,
           font ? "IBM Plex Sans",
         }:
         let
-          c = colors.lib.colors;
-
           renderColumn = links: ''
             <div class="column">
               ${builtins.concatStringsSep "\n" (
@@ -116,5 +116,101 @@
           </body>
           </html>
         '';
+
+      # Example homepage layout
+      exampleLayout = [
+        "separator"
+
+        [
+          {
+            short = "op";
+            full = "spotify";
+            url = "https://open.spotify.com";
+          }
+          {
+            short = "yt";
+            full = "youtube";
+            url = "https://youtube.com";
+          }
+          {
+            short = "ig";
+            full = "instagram";
+            url = "https://instagram.com";
+          }
+          {
+            short = "dc";
+            full = "discord";
+            url = "https://discord.com/channels/@me";
+          }
+          {
+            short = "li";
+            full = "lichess";
+            url = "https://lichess.org";
+          }
+          {
+            short = "fm";
+            full = "lastfm";
+            url = "https://last.fm";
+          }
+          {
+            short = "gh";
+            full = "github";
+            url = "https://github.com";
+          }
+          {
+            short = "mt";
+            full = "monkeytype";
+            url = "https://monkeytype.com";
+          }
+          {
+            short = "wk";
+            full = "wikipedia";
+            url = "https://en.wikipedia.org/wiki/Main_Page";
+          }
+          {
+            short = "ch";
+            full = "chatgpt";
+            url = "https://chatgpt.com";
+          }
+          {
+            short = "np";
+            full = "nix packages";
+            url = "https://search.nixos.org/packages?channel=unstable";
+          }
+          {
+            short = "no";
+            full = "nix options";
+            url = "https://search.nixos.org/options?channel=unstable";
+          }
+          {
+            short = "hm";
+            full = "hm options";
+            url = "https://home-manager-options.extranix.com/release=master";
+          }
+          {
+            short = "nw";
+            full = "nixos wiki";
+            url = "https://wiki.nixos.org/wiki/NixOS_Wiki";
+          }
+          {
+            short = "aw";
+            full = "arch wiki";
+            url = "https://wiki.archlinux.org/title/Main_page";
+          }
+        ]
+
+        "separator"
+      ];
+
+      exampleHtml = makeHomepage {
+        layout = exampleLayout;
+        n = 5;
+        font = "'IBM Plex Sans'";
+      };
+
+    in
+    {
+      lib.makeHomepage = makeHomepage;
+      packages.x86_64-linux.default = builtins.toFile "homepage.html" exampleHtml;
     };
 }

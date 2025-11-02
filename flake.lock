@@ -1,0 +1,26 @@
+{
+  "nodes": {
+    "colors": {
+      "locked": {
+        "lastModified": 1760205316,
+        "narHash": "sha256-Pja4LXFbDBmvR5p9lPIvRp8Rq/afkS4dgK+3puHLVBk=",
+        "owner": "sotormd",
+        "repo": "colors",
+        "rev": "49fea5774176474e6e2b9996f53cdaa4f460919a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sotormd",
+        "repo": "colors",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "colors": "colors"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
