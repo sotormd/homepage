@@ -1,8 +1,7 @@
 # homepage
 
-A **pure Nix static homepage generator** — create a clean, keyboard-navigable
-startpage with **zero JavaScript dependencies** and full control over layout,
-colors, and typography.
+A pure Nix static homepage generator: Create a clean, keyboard-navigable startpage
+with pure HTML/CSS/JS (zero dependencies) and full control over layout, colors, etc.
 
 ![homepage](./screenshots/homepage.gif)
 
