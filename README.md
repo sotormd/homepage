@@ -146,7 +146,6 @@ Each link can be opened by typing its **short name** directly in the browser.
 For example, in the provided example package:
 
 ```
-yt → opens YouTube  
-sx → opens SearXNG  
+yt → opens YouTube 
 gh → opens GitHub
 ```
