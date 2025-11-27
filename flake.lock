@@ -2,17 +2,14 @@
   "nodes": {
     "colors": {
       "locked": {
-        "lastModified": 1760205316,
-        "narHash": "sha256-Pja4LXFbDBmvR5p9lPIvRp8Rq/afkS4dgK+3puHLVBk=",
-        "owner": "sotormd",
-        "repo": "colors",
-        "rev": "49fea5774176474e6e2b9996f53cdaa4f460919a",
-        "type": "github"
+        "lastModified": 1764250136,
+        "narHash": "sha256-iPbx+i07Xa0vSabq/ssWFKimV83QNq0xL8vbwmlpWGo=",
+        "path": "/home/vrm/Projects/colors",
+        "type": "path"
       },
       "original": {
-        "owner": "sotormd",
-        "repo": "colors",
-        "type": "github"
+        "path": "/home/vrm/Projects/colors",
+        "type": "path"
       }
     },
     "root": {

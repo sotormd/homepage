@@ -24,8 +24,7 @@ zero dependencies and full control over layout, colors, etc.
 
 - **Declarative layout**: define your homepage structure entirely in Nix.
 - **Theming via [sotormd/colors](https://github.com/sotormd/colors)**:
-  consistent Nord-like palette for backgrounds, text, and accents.
-- **Custom fonts and grid size**: configure both with a single argument.
+  consistent Nord-like palette for backgrounds, text, accents and fonts.
 - **Keyboard shortcuts**: type the short name to instantly open a link.
 - **Dynamic hover colors**: links smoothly change to aurora tones on hover.
 - **Pure Nix**: uses only `builtins`, so it works anywhere without external
@@ -74,7 +73,6 @@ home.lib.makeHomepage {
   ];
 
   n = 2;                    # grid size (columns per row)
-  font = "'IBM Plex Sans'"; # custom font family
 }
 ```
 
@@ -108,7 +106,6 @@ schema).
 
         html = home.lib.makeHomepage {
           inherit layout;
-          font = "'Fira Code'";
           n = 4;
         };
       in

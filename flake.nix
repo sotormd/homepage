@@ -12,7 +12,6 @@
         {
           layout,
           n ? 5,
-          font ? "IBM Plex Sans",
         }:
         let
           renderColumn = links: ''
@@ -39,13 +38,13 @@
             <title>home</title>
             <style>
               body {
-                background-color: #${c.bg0};
+                background-color: #${c.homepage.bg};
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 height: 100vh;
-                font-family: ${font};
+                font-family: ${c.fonts.normal};
                 font-size: 18px;
                 margin: 0;
               }
@@ -59,24 +58,24 @@
 
               .separator {
                 width: calc(${toString n} * 144px + (${toString n} - 1) * 10px);
-                border: 2px solid #${c.blue2};
+                border: 2px solid #${c.homepage.accent};
                 margin: 10px 0;
               }
 
               .link {
                 text-align: center;
                 padding: 20px 17px;
-                color: #${c.fg0};
+                color: #${c.homepage.fg};
                 text-decoration: none;
                 border-radius: 5px;
-                background-color: #${c.bg3};
+                background-color: #${c.homepage.btnbg};
                 transition: background-color 0.3s ease;
                 min-width: 110px;
               }
 
               .link:hover {
                 background-color: var(--random-color);
-                color: #${c.bg0};
+                color: #${c.homepage.bg};
               }
             </style>
           </head>
@@ -84,7 +83,7 @@
             ${layoutHTML}
             <script>
               function getRandomColor() {
-                const colors = ["#${c.red}", "#${c.orange}", "#${c.yellow}", "#${c.green}", "#${c.purple}"];
+                const colors = [${builtins.concatStringsSep ", " (map (c: ''"#${c}"'') c.homepage.hover)}];
                 return colors[Math.floor(Math.random() * colors.length)];
               }
 
@@ -205,7 +204,6 @@
       exampleHtml = makeHomepage {
         layout = exampleLayout;
         n = 5;
-        font = "'IBM Plex Sans'";
       };
 
     in
