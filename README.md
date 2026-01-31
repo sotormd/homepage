@@ -23,8 +23,8 @@ zero dependencies and full control over layout, colors, etc.
 ## Features
 
 - **Declarative layout**: define your homepage structure entirely in Nix.
-- **Theming via [sotormd/colors](https://github.com/sotormd/colors)**:
-  consistent Nord-like palette for backgrounds, text, accents and fonts.
+- **Easy theming**: easily customize colors, fonts, etc. uses with the Nord
+  theme by default.
 - **Keyboard shortcuts**: type the short name to instantly open a link.
 - **Dynamic hover colors**: links smoothly change to aurora tones on hover.
 - **Pure Nix**: uses only `builtins`, so it works anywhere without external
@@ -76,41 +76,52 @@ home.lib.makeHomepage {
 }
 ```
 
-## Customizing Colors
+## Customizing Colors and Fonts
 
-By default, it uses [`sotormd/colors`](https://github.com/sotormd/colors). You
-can override this by passing your own color flake (see the flakes for expected
-schema).
+The `lib.makeHomepage` function takes the `colors` and `fonts` arguments, which
+can be used to customize the colors.
+
+`colors` is an attribute set with the following:
+
+| `colors.*` | explanation                       | type   | default                                            |
+| ---------- | --------------------------------- | ------ | -------------------------------------------------- |
+| `bg`       | background color for the page     | string | `"2e3440"`                                         |
+| `btnbg`    | background color for buttons      | string | `"4c566a"`                                         |
+| `fg`       | text color                        | string | `"d8dee9"`                                         |
+| `accent`   | color for separators              | string | `"81a1c1"`                                         |
+| `hover`    | button background colors on hover | list   | `[ "bf616a" "d08770" "ebcb8b" "a3be8c" "b48ead" ]` |
+
+`font` is a string, the default is `JetBrains Mono`
+
+Example usage:
 
 ```nix
-{
-  description = "Custom themed homepage";
+home.lib.makeHomepage {
+  layout = [
+    [
+      { short = "re"; full = "reddit"; url = "https://reddit.com"; }
+      { short = "dc"; full = "discord"; url = "https://discord.com/app"; }
+    ]
 
-  inputs = {
-    colors.url = "github:myUsername/colors"; # your own color flake
-    home = {
-      url = "github:sotormd/homepage";
-      inputs.colors.follows = "colors";
-    };
+    "separator"
+
+    [
+      { short = "yt"; full = "youtube"; url = "https://youtube.com"; }
+      { short = "gh"; full = "github"; url = "https://github.com"; }
+    ]
+  ];
+
+  n = 2;                    # grid size (columns per row)
+
+  colors = {
+    bg = "ffffff";
+    btnbg = "555555";
+    fg = "000000";
+    accent = "000000";
+    hover = [ "000000" ];
   };
 
-  outputs = { self, home, colors, ... }: {
-    packages.x86_64-linux.default =
-      let
-        layout = [
-          [
-            { short = "yt"; full = "youtube"; url = "https://youtube.com"; }
-            { short = "gh"; full = "github"; url = "https://github.com"; }
-          ]
-        ];
-
-        html = home.lib.makeHomepage {
-          inherit layout;
-          n = 4;
-        };
-      in
-      builtins.toFile "homepage.html" html;
-  };
+  font = "Fira Code";
 }
 ```
 

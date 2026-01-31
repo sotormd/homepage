@@ -1,17 +1,27 @@
 {
   description = "simple static homepage generator";
 
-  inputs.colors.url = "github:sotormd/colors";
-
   outputs =
-    { colors, ... }:
+    _:
     let
-      c = colors.lib.colors;
-
       makeHomepage =
         {
           layout,
           n ? 5,
+          colors ? {
+            bg = "2e3440";
+            btnbg = "4c566a";
+            fg = "d8dee9";
+            accent = "81a1c1";
+            hover = [
+              "bf616a"
+              "d08770"
+              "ebcb8b"
+              "a3be8c"
+              "b48ead"
+            ];
+          },
+          font ? "JetBrains Mono",
         }:
         let
           renderColumn = links: ''
@@ -38,13 +48,13 @@
             <title>home</title>
             <style>
               body {
-                background-color: #${c.homepage.bg};
+                background-color: #${colors.bg};
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 height: 100vh;
-                font-family: ${c.fonts.normal};
+                font-family: ${font};
                 font-size: 18px;
                 margin: 0;
               }
@@ -58,24 +68,24 @@
 
               .separator {
                 width: calc(${toString n} * 144px + (${toString n} - 1) * 10px);
-                border: 2px solid #${c.homepage.accent};
+                border: 2px solid #${colors.accent};
                 margin: 10px 0;
               }
 
               .link {
                 text-align: center;
                 padding: 20px 17px;
-                color: #${c.homepage.fg};
+                color: #${colors.fg};
                 text-decoration: none;
                 border-radius: 5px;
-                background-color: #${c.homepage.btnbg};
+                background-color: #${colors.btnbg};
                 transition: background-color 0.3s ease;
                 min-width: 110px;
               }
 
               .link:hover {
                 background-color: var(--random-color);
-                color: #${c.homepage.bg};
+                color: #${colors.bg};
               }
             </style>
           </head>
@@ -83,7 +93,7 @@
             ${layoutHTML}
             <script>
               function getRandomColor() {
-                const colors = [${builtins.concatStringsSep ", " (map (c: ''"#${c}"'') c.homepage.hover)}];
+                const colors = [${builtins.concatStringsSep ", " (map (c: ''"#${c}"'') colors.hover)}];
                 return colors[Math.floor(Math.random() * colors.length)];
               }
 
@@ -201,10 +211,7 @@
         "separator"
       ];
 
-      exampleHtml = makeHomepage {
-        layout = exampleLayout;
-        n = 5;
-      };
+      exampleHtml = makeHomepage { layout = exampleLayout; };
 
     in
     {
