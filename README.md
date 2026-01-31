@@ -91,7 +91,7 @@ can be used to customize the colors.
 | `accent`   | color for separators              | string | `"81a1c1"`                                         |
 | `hover`    | button background colors on hover | list   | `[ "bf616a" "d08770" "ebcb8b" "a3be8c" "b48ead" ]` |
 
-`font` is a string, the default is `JetBrains Mono`
+`font` is a string, the default is `IBM Plex Sans`
 
 Example usage:
 

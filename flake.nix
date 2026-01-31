@@ -21,7 +21,7 @@
               "b48ead"
             ];
           },
-          font ? "JetBrains Mono",
+          font ? "IBM Plex Sans",
         }:
         let
           renderColumn = links: ''
