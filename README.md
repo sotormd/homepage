@@ -1,5 +1,7 @@
 # homepage
 
+![Archived](https://img.shields.io/badge/status-archived-red)
+
 A pure Nix static homepage generator. Clean, keyboard-navigable startpages with
 zero dependencies and full control over layout, colors, etc.
 
@@ -27,8 +29,6 @@ zero dependencies and full control over layout, colors, etc.
   theme by default.
 - **Keyboard shortcuts**: type the short name to instantly open a link.
 - **Dynamic hover colors**: links smoothly change to aurora tones on hover.
-- **Pure Nix**: uses only `builtins`, so it works anywhere without external
-  dependencies.
 
 ## Example
 
